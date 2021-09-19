@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Nemesis Task</title>
+  </head>
+  <body>
+    <nav class="navbar sticky-top navbar-dark bg-primary">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">Nemesis Django Task</a>
+          {% if request.session.email%}Welcome {{request.session.email}} &nbsp;&nbsp;{% else %}
+          {% endif %}
+          <button type="text" class="btn btn-outline-success text-light text-right" >
+          <a href="/logoutuser"style="color:white;">Logout</a></button>
+        </div> 
+    </nav>
+
+<div class="container-fluid">
+     
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center">All User Details</h2>
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                    <th>Id</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Edit Action</th>
+                        <th>Delete Action</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                    {% for udata in alluser %}
+                    <tr>
+                    <td>{{udata.id}}</td>
+                    <td>{{udata.username}}</td>
+                    <td>{{udata.email}}</td>
+                    <td>{{udata.address}}</td>
+                    <td><a class="btn btn-primary m-2" href="/editrec/{{udata.id}}">Edit</a></td>
+                    <td><a class="btn btn-primary m-2" href="/delete/{{udata.id}}">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+
+            </table>
+             
+
+        </div>
+    </div>
+</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+  </body>
+</html>
